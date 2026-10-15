@@ -103,8 +103,6 @@ public class EmployeeServiceImplTest {
         list.add(createdEmployee3);
         testEmployee1.setDirectReports(list);
         Employee createdEmployee1 = restTemplate.postForEntity(employeeUrl, testEmployee1, Employee.class).getBody();
-        restTemplate.postForEntity(employeeUrl, testEmployee2, Employee.class);
-        restTemplate.postForEntity(employeeUrl, testEmployee3, Employee.class);
 
         //for an employee with 2 higher reports
         ResponseEntity<ReportingStructure> response = restTemplate.getForEntity("http://localhost:"+ port +"/reportingStructure/{id}", ReportingStructure.class, createdEmployee1.getEmployeeId());
