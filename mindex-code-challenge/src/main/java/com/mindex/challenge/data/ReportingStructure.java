@@ -2,7 +2,7 @@ package com.mindex.challenge.data;
 
 public class ReportingStructure{
     private int numberOfReports;
-    private String employee;
+    private Employee employee;
 
     public ReportingStructure() {
     }
@@ -15,11 +15,11 @@ public class ReportingStructure{
         this.numberOfReports = numberOfReports;
     }
 
-    public String getEmployee() {
+    public Employee getEmployee() {
         return employee;
     }
 
-    public void setEmployee(String employee) {
+    public void setEmployee(Employee employee) {
         this.employee = employee;
     }
 }
