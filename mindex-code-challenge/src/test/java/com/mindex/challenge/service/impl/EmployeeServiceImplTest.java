@@ -106,9 +106,20 @@ public class EmployeeServiceImplTest {
         restTemplate.postForEntity(employeeUrl, testEmployee2, Employee.class);
         restTemplate.postForEntity(employeeUrl, testEmployee3, Employee.class);
 
+        //for an employee with 2 higher reports
         ResponseEntity<ReportingStructure> response = restTemplate.getForEntity("http://localhost:"+ port +"/reportingStructure/{id}", ReportingStructure.class, createdEmployee1.getEmployeeId());
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(createdEmployee1.getEmployeeId(), response.getBody().getEmployee().getEmployeeId());
         assertEquals(2, response.getBody().getNumberOfReports());
+
+        //for an employee with no reports
+        response = restTemplate.getForEntity("http://localhost:"+ port +"/reportingStructure/{id}", ReportingStructure.class, createdEmployee2.getEmployeeId());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(createdEmployee2.getEmployeeId(), response.getBody().getEmployee().getEmployeeId());
+        assertEquals(0, response.getBody().getNumberOfReports());
+
+        //for an non existant employee
+        response = restTemplate.getForEntity("http://localhost:"+ port +"/reportingStructure/{id}", ReportingStructure.class, new Employee().getEmployeeId());
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     } 
 }
