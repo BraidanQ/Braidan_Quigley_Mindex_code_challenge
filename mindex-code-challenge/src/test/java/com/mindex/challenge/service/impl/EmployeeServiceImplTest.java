@@ -91,6 +91,7 @@ public class EmployeeServiceImplTest {
         assertEquals(expected.getPosition(), actual.getPosition());
     }
 
+    //testing method for the various outcomes of the reporting structures getter
     @Test
     public void testGetReportingStructure(){
         Employee testEmployee1 = new Employee();
@@ -104,7 +105,7 @@ public class EmployeeServiceImplTest {
         testEmployee1.setDirectReports(list);
         Employee createdEmployee1 = restTemplate.postForEntity(employeeUrl, testEmployee1, Employee.class).getBody();
 
-        //for an employee with 2 higher reports
+        //for an employee with 2 reports
         ResponseEntity<ReportingStructure> response = restTemplate.getForEntity("http://localhost:"+ port +"/reportingStructure/{id}", ReportingStructure.class, createdEmployee1.getEmployeeId());
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(createdEmployee1.getEmployeeId(), response.getBody().getEmployee().getEmployeeId());

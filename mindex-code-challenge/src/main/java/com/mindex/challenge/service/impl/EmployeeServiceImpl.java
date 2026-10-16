@@ -50,8 +50,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.save(employee);
     }
 
+    //the service contains the logic to cerate the temporary reporting structure
     @Override
     public ReportingStructure get(String id){
+        LOG.debug("getting reporting structure for [{}]", id);
         ReportingStructure reporting = new ReportingStructure();
         Employee employee = read(id);
         reporting.setEmployee(employee);
@@ -59,6 +61,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         return reporting;
     }
 
+    /*recursive function is to loop through all directed employees and calculate the total reports.
+    from the data given it did not seem as though reports could loop (aka two employees report to each other).
+    If that was the case this function would run infinitly, but could be fixed by creaing a list of visited ids and passing that as another parameter.*/
     private int getNumReports(Employee employee){
         int numReports = 0;
         if(employee.getDirectReports() != null){

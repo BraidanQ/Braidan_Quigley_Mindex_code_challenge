@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Compensation{
     private String employeeId;
-    private int salary;
-    private Date effectivDate;
+    private int salary;//salary is an int because it would make sense for a yearly salary to be a simple int
+    private Date effectivDate;// effective date is a date so that a proper start date can be saved
 
     public Compensation(){
     }

@@ -43,6 +43,8 @@ public class EmployeeController {
         return employeeService.update(employee);
     }
 
+    //reporting structure is within the employee controller becuase it only works with employee data and dose not need any addtional data of its own
+    //the mapping of reportingStructure/{id} is to make it easy for the user to understand they are grabbing the reporting structure by id
     @GetMapping("/reportingStructure/{id}")
     public ReportingStructure get(@PathVariable String id){
         LOG.debug("Received reporting structure create request for id [{}]", id);

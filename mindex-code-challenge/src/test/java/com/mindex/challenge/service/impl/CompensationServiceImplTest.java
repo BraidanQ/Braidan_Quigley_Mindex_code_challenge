@@ -42,8 +42,9 @@ public class CompensationServiceImplTest {
         compensationGetUrl = "http://localhost:" + port + "/compensation/{id}";
     }
 
+    //testing method for the creator and getter methods for compensation
     @Test
-    public void testCreateCompensation() {
+    public void testCreateGetCompensation() {
 
         Compensation testComp = new Compensation();
         testComp.setEmployeeId(UUID.randomUUID().toString());
@@ -71,6 +72,7 @@ public class CompensationServiceImplTest {
         assertEquals(testComp.getEmployeeId(), getResponse.getBody().getEmployeeId());
         assertEquals(testComp.getSalary(), getResponse.getBody().getSalary());
 
+        //invalid get check
         getResponse = restTemplate.getForEntity(compensationGetUrl, Compensation.class, "not an id");
 
         assertEquals(getResponse.getStatusCode(),HttpStatus.INTERNAL_SERVER_ERROR);

@@ -18,13 +18,15 @@ public class CompensationServiceImpl implements CompensationService {
     @Autowired
     private CompensationRepository compensationRepository;
 
+    //The create for compensation simply takes the passes compensation and saves it to the repository
     @Override
     public Compensation create(Compensation compensation){
         LOG.debug("Creating compensation [{}]", compensation);
-        Compensation comp = compensationRepository.insert(compensation);
+        Compensation comp = compensationRepository.insert(compensation); // returns the returned compensation to ensure that it was properly saved
         return comp;
     }
 
+    //the getter grabs the compensation from the repository and does a simple check to make sure it exists
     @Override
     public Compensation get(String id){
         LOG.debug("Creating compensation [{}]", id);

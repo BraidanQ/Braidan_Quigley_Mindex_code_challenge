@@ -19,6 +19,7 @@ public class CompensationController {
     @Autowired
     private CompensationService compensationService;
 
+    //the mapping of /compensation is to make an obvious connection between the url and what it does
     @PostMapping("/compensation")
     public Compensation create(@RequestBody Compensation compensation) {
         LOG.debug("Received compensation create request for [{}]", compensation);
@@ -26,6 +27,7 @@ public class CompensationController {
         return compensationService.create(compensation);
     }
 
+    //the mapping of /compensation/{id} is to help the user understand that they are grabbing a compensation by using the id
     @GetMapping("/compensation/{id}")
     public Compensation get(@PathVariable String id){
         LOG.debug("Received compensation create request for [{}]", id);
